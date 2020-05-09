@@ -205,7 +205,9 @@ var buffer = await blob.arrayBuffer();
 + 通常情况下File对象来自 <kbd> input </kbd> 元素上返回的FileList对象。
 + 由自由拖拽操作生成的 <kbd> DataTransfer </kbd> 对象。
 + 来自 <kbd> HTMLCanvasElement </kbd> 上的 <kbd> mozGetAsFile() </kbd> API。
-+ 在Gecko中，特权代码可以自由创建代表任何本地文件的File
++ 在Gecko中，特权代码可以自由创建代表任何本地文件的File  
+
+.  
 
     Gecko指渲染引擎
 
