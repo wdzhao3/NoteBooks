@@ -1,3 +1,7 @@
+***参考来源***  
+
+*基本的定义大部分来自MDN*
+
 ## URL对象
 
 URL接口是一个包含若干静态方法的对象
@@ -82,7 +86,7 @@ URLUtils.password
 URLUtils.searchParams
 
 
-- 感觉可以用来解析url，不需要拼字符串那么low了
+    感觉可以用来解析url，不需要拼字符串那么low了
 
 ### 方法
 
@@ -94,7 +98,7 @@ URL.createObjectURL()
 
 返回一个DOMString ，包含一个唯一的blob链接（该链接协议为以blob:，后跟唯一标识浏览器中的对象的掩码）。
 
-- 可以将文件、图片生成一个URL链接直接使用
+    可以将文件、图片生成一个URL链接直接使用
 
 URL.revokeObjectURL()
 
@@ -104,7 +108,7 @@ URL.revokeObjectURL()
 
 介绍File对象前要先说下Blob，Blob 对象表示一个不可变、原始数据的类文件对象。Blob 表示的不一定是JavaScript原生格式的数据。File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
 
-换句话说就是Blob是File的父类型。
+    换句话说就是Blob是File的父类型。
 
 ### 构造器
 
@@ -124,6 +128,8 @@ options 包含以下两个属性type，指定内容的MIME类型。endings，指
 var debug = {hello: "world"};
 var blob = new Blob([JSON.stringify(debug, null, 2)], {type : 'application/json'});
 ```
+    这个感觉比较有用，可以创建Blob然后转file
+
 使用Blob创建一个指向类型化数组的URL
 ```javascript
 var typedArray = GetTheTypedArraySomehow();
@@ -151,20 +157,21 @@ Blob.slice([start[, end[, contentType]]])
 
 返回一个新的Blob对象，start起始字节下标， end结束字节下标，contentType 新的文档类型。
 
-- 这样就可以修改Blob对象类型了，因为通过Blob创建的File类型其实还是Blob的原始类型，File.type是无效的属性。
+    这样就可以修改Blob对象类型了，因为通过Blob创建的File类型其实还是Blob的原始类型，File.type是无效的属性。
 
 Blob.stream()
 
 Blob接口的stream() 方法返回一个ReadableStream对象，读取它将返回包含在Blob中的数据。
 
 **使用说明**
+
 使用 stream() 函数与其返回的ReadableStream对象，你将得到一些有趣的能力：
 + 调用方法getReader()，在返回的stream上获取一个对象，通过 ReadableStreamDefaultReader接口提供的read()方法读取blob对象的方法。
 + 调用返回stream对象的pipeTo()方法将blob对象的数据传输到可写流。
 + 调用返回stream对象的tee()方法以准备可读流。该方法会返回一个数组，该数组包含两个新的 ReadableStream 对象，每个对象都会返回 Blob的内容。
 + 调用返回stream对象的pipeThrough()方法，通过一个TransformStream对象或其它任意可读可写对传输流对象。
 
-- 这样是可以使用stream流对象
+    这样是可以使用stream流对象
 
 Blob.text()
 
@@ -177,6 +184,7 @@ blob.text().then(text => /* 执行的操作…… */);
 var text = await blob.text();
 ```
 **注意**
+
 + blob.text()只能使用UTF-8编码，而File的FileReader.readAsText()可以使用不同方式。
 
 Blob.arrayBuffer()
@@ -191,3 +199,13 @@ var buffer = await blob.arrayBuffer();
 ```
 
 ## FIle对象
+
+文件（File）接口提供有关文件的信息，并允许网页中的 JavaScript 访问其内容。
+
++ 通常情况下File对象来自 <kbd> input </kbd> 元素上返回的FileList对象。
++ 由自由拖拽操作生成的 <kbd> DataTransfer </kbd> 对象。
++ 来自 <kbd> HTMLCanvasElement </kbd> 上的 <kbd> mozGetAsFile() </kbd> API。
++ 在Gecko中，特权代码可以自由创建代表任何本地文件的File
+
+    Gecko指渲染引擎
+
