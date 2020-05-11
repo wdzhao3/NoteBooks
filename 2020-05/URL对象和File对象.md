@@ -138,6 +138,30 @@ var url = URL.createObjectURL(blob);
 // 会产生一个类似 blob:d3958f5c-0777-0845-9dcf-2cb28783acaf 这样的URL字符串
 // 你可以像使用普通 URL 那样使用它，比如用在 img.src 上。
 ```
+
+```javascript
+    // 兼容的方式
+    // 传入File或Blob对象
+    function createObjectURL(blob) {
+        if(window.URL) {
+            return window.URL.createObject(blob)
+        } else if(Window.webkieURL) {
+            return return window.webkitURL.createObject(blob)
+        } else {
+            return null
+        }
+    }
+    // 将blob对象转为URL地址实质是将文件信息保存在了内存中，可以直接在DOM中使用，只要引用内存就不会被释放，页面卸载时会被释放，可以手动释放内存  
+    // 兼容写法
+    function revokeObjectURL(url) {
+        if(window.URL) {
+            return window.URL.revokeObject(url)
+        } else if (window.webkitURL) {
+            return window.webkitURL.revokeObject(url)
+        }
+    }
+```
+
 读取Bolb内容
 ```javascript
 // 1.使用FileReader对象
@@ -211,3 +235,83 @@ var buffer = await blob.arrayBuffer();
 
     Gecko指渲染引擎
 
+### 属性（只读）
+
+File.lastModified
+
+返回当前 File 对象所引用文件最后修改时间（1970.1.1以来的毫秒数）
+
+File.lastModifiedDate
+
+返回当前 File 对象所引用文件最后修改时间的 Date 对象。
+
+File.webkitRelativePath
+
+返回 File 相关的 path 或 URL
+
+name、size、type分别为名称、大小、类型
+
+### 方法
+
+只从Blob继承了slice()
+
+## FileReader
+
+FileReader 对象允许Web应用程序异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容，使用 File 或 Blob 对象指定要读取的文件或数据。
+
+    FileReader实现的是一个异步读取文件的机制，js可以通过这个api读取文件
+
+### 构造函数
+
+`var reader = new FileReader();`
+
+### 属性（只读）
+
+FileReader.error 一个DOMException，表示在读取文件时发生的错误 。
+
+FileReader.readyState EMPTY：0：没有加载任何数据；LOADING：1：数据正在被加载；DONE：2：已完成全部的读取请求。
+
+FileReader.result 文件的内容。该属性仅在读取操作完成后才有效
+
+### 事件方法
+
+FileReader.onabort 读取被中断时触发
+
+FileReader.onerror 读取发生错误时触发
+
+```javascript
+var reader = new FileReader();
+  reader.onerror = function(event) {
+  reader.abort();
+};
+```
+
+FileReader.onload 读取完成时触发
+
+```javascript
+var reader = new FileReader();
+  reader.onload = function(event) {
+    // 文件里的文本会在这里被打印出来
+    console.log(event.target.result)
+  };
+```
+
+    onloadstart、onloadend、onprogress等方法可能不适用了
+
+### 方法
+
+FileReader.abort() 终止读取操作，readyState为DONE。
+
+FileReader.readAsArrayBuffer() 开始以ArrayBuffer方式读取
+
+FileReader.readAsBinaryString() 开始以原始二进制方式读取
+
+FileReader.readAsDataURL() 开始读取，返回URL格式的base64字符串
+
+FileReader.readAsText() 读取文件内容
+
+    将文件转URL在blob的内容里提到了
+    
+    读取部分内容
+
+    读取拖放的文件
