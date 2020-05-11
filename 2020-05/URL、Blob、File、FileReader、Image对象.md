@@ -315,3 +315,5 @@ FileReader.readAsText() 读取文件内容
     读取部分内容
 
     读取拖放的文件
+
+    XHR上传文件
