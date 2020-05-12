@@ -182,6 +182,20 @@ Blob.slice([start[, end[, contentType]]])
 返回一个新的Blob对象，start起始字节下标， end结束字节下标，contentType 新的文档类型。
 
     这样就可以修改Blob对象类型了，因为通过Blob创建的File类型其实还是Blob的原始类型，File.type是无效的属性。
+    另外，这个方法可以读取Blob部分内容
+    兼容的写法如下
+
+```javascript
+function bolbSlice(blob, startByte, length) {
+    if(blob.slice) {
+        return blob.slice(blob, startByte, length)
+    } else if(blob.webkitSlice) {
+        return blob.webkitSlice(blob, startByte, length)
+    } else if(blob.mozSlice) {
+        return blob.mozSlice(blob, startByte, length)
+    }
+}
+```
 
 Blob.stream()
 
@@ -312,8 +326,38 @@ FileReader.readAsText() 读取文件内容
 
     将文件转URL在blob的内容里提到了
     
-    读取部分内容
+    读取部分内容，同Blob中的slice()
 
     读取拖放的文件
 
     XHR上传文件
+
+## ImageData对象
+
+### 构造器
+
+```javascript
+new ImageData(array, width, height);
+new ImageData(width, height);
+
+var imageData = new ImageData(100, 100); // Creates a 100x100 black rectangle
+// ImageData { width: 100, height: 100, data: Uint8ClampedArray[40000] }
+```
+
+array：包含图像隐藏像素的 Uint8ClampedArray 数组。如果数组没有给定，指定大小的黑色矩形图像将会被创建。
+
+width：宽度。
+
+height： 高度。
+
+### 属性（只读）
+
+ImageData.data
+
+ImageData.width
+
+ImageData.height
+
+***
+
+后续会补充一篇关于创建2D图像。
