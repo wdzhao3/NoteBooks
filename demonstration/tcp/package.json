@@ -1,0 +1,11 @@
+{
+  "name": "tcp",
+  "version": "1.0.0",
+  "description": "TCP",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "author": "",
+  "license": "ISC"
+}
