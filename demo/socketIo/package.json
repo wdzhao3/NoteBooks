@@ -7,9 +7,12 @@
     "declarations": true
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "egg": "^2.15.1",
     "egg-scripts": "^2.11.0",
-    "egg-socket.io": "^4.1.6"
+    "egg-socket.io": "^4.1.6",
+    "eventproxy": "^1.0.0",
+    "superagent": "^5.2.2"
   },
   "devDependencies": {
     "autod": "^3.0.1",
