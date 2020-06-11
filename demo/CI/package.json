@@ -1,0 +1,14 @@
+{
+  "name": "ci",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "eggCi": "./eggCi.js"
+  },
+  "author": "wdz",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^5.1.0"
+  }
+}

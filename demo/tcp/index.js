@@ -6,7 +6,6 @@ const server = net.createServer((conn) => {
     // 设置编码
     conn.setEncoding('utf8')
 
-    
     let nickname;
     let res = '';
     // 客户端发来的数据
