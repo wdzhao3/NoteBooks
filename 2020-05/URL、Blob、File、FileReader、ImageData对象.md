@@ -186,13 +186,13 @@ Blob.slice([start[, end[, contentType]]])
     兼容的写法如下
 
 ```javascript
-function bolbSlice(blob, startByte, length) {
+function bolbSlice(blob) {
     if(blob.slice) {
-        return blob.slice(blob, startByte, length)
+        return blob.slice(0, blob.size, 'image/jpeg')
     } else if(blob.webkitSlice) {
-        return blob.webkitSlice(blob, startByte, length)
+        return blob.webkitSlice(0, blob.size, 'image/jpeg')
     } else if(blob.mozSlice) {
-        return blob.mozSlice(blob, startByte, length)
+        return blob.mozSlice(0, blob.size, 'image/jpeg')
     }
 }
 ```
