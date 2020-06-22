@@ -93,16 +93,4 @@ require(__dirname + '/node_modules/egg-scripts/bin/egg-scripts.js')
 
 ## 注意
 
-+ 项目运行需要启动相应的数据库和 Memcache缓存
-+ 启动失败可能是 egg-sequelize ，可以安装egg-sequelize-pkg 并修改一下配置
-
-```javascript
-// {app_root}/config/plugin.js
-exports.sequelizePkg = {
-  enable: true,
-  package: 'egg-sequelize_pkg',
-};
-// {app_root}/config/config.default.js
-exports.sequelizePkg = {
-};
-```
++ linux程序需要在linux环境下打包。
