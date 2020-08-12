@@ -19,4 +19,5 @@ function cidInfo(sId) {
   return true
 }
 
-console.log(cidInfo('222222222222222212'))
+console.log(new Date(1594200058301))
+console.log(new Date("2020-07-08 17:20:00 GMT"))
